@@ -2,11 +2,12 @@ package command
 
 import (
 	"strconv"
+	"fmt"
 )
 
 func HandleCommands(options Commands, args []string) {
 	for _, arg := range args {
-		println(arg)
+		fmt.Println(arg)
 	}
-	println("Verbose: " + strconv.FormatBool(options.Verbose))
+	fmt.Println("Verbose: " + strconv.FormatBool(options.Verbose))
 }
