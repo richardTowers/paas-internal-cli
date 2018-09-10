@@ -6,6 +6,8 @@ import (
 	"os"
 
 	"github.com/jessevdk/go-flags"
+
+	"github.com/richardTowers/paas-internal-cli/command"
 )
 
 func main() {
@@ -17,8 +19,8 @@ func main() {
 }
 
 func Main() error {
-	var opts struct{}
-	parser := flags.NewParser(&opts, flags.Default)
+	var commands command.Commands
+	parser := flags.NewParser(&commands, flags.Default)
 	args, err := parser.Parse()
 
 	if isHelp(err) {
@@ -29,9 +31,7 @@ func Main() error {
 		return fmt.Errorf(b.String())
 	}
 
-	for _, arg := range args {
-		println(arg)
-	}
+	command.HandleCommands(commands, args)
 
 	return nil
 }
